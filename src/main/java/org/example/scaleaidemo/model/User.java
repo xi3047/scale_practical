@@ -21,6 +21,9 @@ public class User {
     @JsonProperty("active")
     private Boolean active;
 
+    @JsonProperty("classification")
+    private String classification;
+
     public User() {}
 
     public User(String id, String name, String email, String department, String role, Boolean active) {
@@ -49,4 +52,7 @@ public class User {
 
     public Boolean getActive() { return active; }
     public void setActive(Boolean active) { this.active = active; }
+
+    public String getClassification() { return classification; }
+    public void setClassification(String classification) { this.classification = classification; }
 }

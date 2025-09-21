@@ -24,16 +24,17 @@ public class FileController {
 
     @PostMapping("/tasks/csv-to-json")
     public ResponseEntity<Map<String, String>> convertTasksCsvToJson(
-            @RequestParam String csvFilePath,
+            @RequestParam String csvUrl,
             @RequestParam String jsonFilePath) {
         try {
-            List<Task> tasks = csvService.readTasksFromCsv(csvFilePath);
+            List<Task> tasks = csvService.readTasksFromUrl(csvUrl);
             jsonService.writeListToJsonFile(tasks, jsonFilePath);
 
             Map<String, String> response = new HashMap<>();
             response.put("status", "success");
             response.put("message", "Tasks CSV converted to JSON successfully");
             response.put("recordsProcessed", String.valueOf(tasks.size()));
+            response.put("csvUrl", csvUrl);
             response.put("outputFile", jsonFilePath);
 
             return ResponseEntity.ok(response);
@@ -47,16 +48,17 @@ public class FileController {
 
     @PostMapping("/users/csv-to-json")
     public ResponseEntity<Map<String, String>> convertUsersCsvToJson(
-            @RequestParam String csvFilePath,
+            @RequestParam String csvUrl,
             @RequestParam String jsonFilePath) {
         try {
-            List<User> users = csvService.readUsersFromCsv(csvFilePath);
+            List<User> users = csvService.readUsersFromUrl(csvUrl);
             jsonService.writeListToJsonFile(users, jsonFilePath);
 
             Map<String, String> response = new HashMap<>();
             response.put("status", "success");
             response.put("message", "Users CSV converted to JSON successfully");
             response.put("recordsProcessed", String.valueOf(users.size()));
+            response.put("csvUrl", csvUrl);
             response.put("outputFile", jsonFilePath);
 
             return ResponseEntity.ok(response);

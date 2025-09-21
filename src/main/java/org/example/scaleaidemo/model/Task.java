@@ -21,6 +21,9 @@ public class Task {
     @JsonProperty("assignee")
     private String assignee;
 
+    @JsonProperty("category")
+    private String category;
+
     public Task() {}
 
     public Task(String id, String title, String description, String status, String priority, String assignee) {
@@ -49,4 +52,7 @@ public class Task {
 
     public String getAssignee() { return assignee; }
     public void setAssignee(String assignee) { this.assignee = assignee; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 }
